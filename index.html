@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unser Online-Rezeptbuch</title>
+    <style>
+        :root {
+            --primary-color: #27ae60;
+            --secondary-color: #2c3e50;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--secondary-color);
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, var(--primary-color), #2196f3);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 380px 1fr;
+            }
+        }
+
+        .form-section, .filter-section, .token-section {
+            background: var(--card-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            height: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .token-section {
+            background: #fdf2e9;
+            border: 1px solid #e67e22;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+            border-bottom: 2px solid #eef2f3;
+            padding-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #dcdde1;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #fcfcfc;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            background-color: #fff;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+
+        .btn-smart {
+            width: 100%;
+            background-color: #2196f3;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            font-size: 13px;
+            padding: 10px;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-smart:hover { background-color: #0b7dda; }
+
+        button {
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #1e7e34;
+        }
+
+        .recipes-display {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        @media (min-width: 992px) {
+            .recipes-display {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .recipe-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            border-top: 5px solid var(--primary-color);
+            position: relative;
+        }
+
+        .recipe-category {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: #e17055;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .recipe-card h3 {
+            font-size: 20px;
+            margin-bottom: 5px;
+            padding-right: 110px;
+            word-wrap: break-word;
+        }
+
+        .recipe-time {
+            color: #7f8c8d;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .portion-calculator {
+            background: #edf2f7;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .portion-calculator input {
+            width: 65px;
+            padding: 6px;
+            text-align: center;
+            background: white;
+        }
+
+        .ingredients-list {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        .ingredients-list li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+
+        .instructions {
+            white-space: pre-line;
+            line-height: 1.6;
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #dcdde1;
+            font-size: 14.5px;
+            margin-bottom: 15px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .video-link-btn {
+            display: inline-block;
+            background-color: #9b59b6;
+            color: white;
+            text-decoration: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .video-link-btn:hover { background-color: #8e44ad; }
+
+        .delete-btn {
+            background-color: #ff7675;
+            padding: 8px 14px;
+            font-size: 12px;
+            width: auto;
+            border-radius: 6px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .delete-btn:hover { background-color: #d63031; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Unser Rezeptbuch</h1>
+    <p>Zusammen kochen – Rezepte teilen & automatisch umrechnen</p>
+</header>
+
+<div class="container">
+    <aside>
+        <!-- Token Box -->
+        <div class="token-section" id="tokenBox">
+            <h2 style="color: #e67e22;">🔑 Zugriff einrichten</h2>
+            <p style="font-size: 13px; margin-bottom: 10px; color: #7f8c8d;">Bitte füge hier dein neues GitHub-Token ein, um Rezepte laden und speichern zu können.</p>
+            <div class="form-group">
+                <input type="password" id="tokenInput" placeholder="ghp_...">
+            </div>
+            <button type="button" style="background-color: #e67e22;" onclick="saveToken()">Verbinden</button>
+        </div>
+
+        <div class="filter-section">
+            <h2>Suche & Filter</h2>
+            <div class="form-group">
+                <label for="searchBar">Rezept suchen:</label>
+                <input type="text" id="searchBar" placeholder="z.B. Nudeln..." oninput="filterRecipes()">
+            </div>
+            <div class="form-group">
+                <label for="filterCategory">Kategorie:</label>
+                <select id="filterCategory" onchange="filterRecipes()">
+                    <option value="Alle">Alle Kategorien</option>
+                    <option value="Nudelgerichte">Nudelgerichte</option>
+                    <option value="Reisgerichte">Reisgerichte</option>
+                    <option value="Fleischgerichte">Fleischgerichte</option>
+                    <option value="Vegetarisch/Vegan">Vegetarisch/Vegan</option>
+                    <option value="Desserts">Desserts</option>
+                    <option value="Sonstiges">Sonstiges</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h2>Neues Rezept eintragen</h2>
+            
+            <div class="form-group" style="background: #ebf5fb; padding: 12px; border-radius: 6px; border: 1px dashed #3498db;">
+                <label for="smartPaste" style="color: #2980b9;">💡 Kompletten Website-Text hier rein:</label>
+                <textarea id="smartPaste" placeholder="Kopiere einfach alles von der Website hier rein..."></textarea>
+                <button type="button" class="btn-smart" onclick="smartParseText()">Daten säubern & sortieren</button>
+            </div>
+
+            <form id="recipeForm" onsubmit="addRecipe(event)">
+                <div class="form-group">
+                    <label for="title">Rezeptname *</label>
+                    <input type="text" id="title" required placeholder="z.B. Tomatenpasta">
+                </div>
+                <div class="form-group">
+                    <label for="category">Kategorie *</label>
+                    <select id="category" required>
+                        <option value="Nudelgerichte">Nudelgerichte</option>
+                        <option value="Reisgerichte">Reisgerichte</option>
+                        <option value="Fleischgerichte">Fleischgerichte</option>
+                        <option value="Vegetarisch/Vegan">Vegetarisch/Vegan</option>
+                        <option value="Desserts">Desserts</option>
+                        <option value="Sonstiges">Sonstiges</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="basePortions">Standard-Personen *</label>
+                    <input type="number" id="basePortions" min="1" value="4" required>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Zutaten * (Menge Einheit Name)</label>
+                    <textarea id="ingredients" required placeholder="500 g Nudeln"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="time">Zubereitungszeit *</label>
+                    <input type="text" id="time" required value="30 Min." placeholder="z.B. 25 Min.">
+                </div>
+                <div class="form-group">
+                    <label for="videoLink">Webseiten- / Video-Link (Optional)</label>
+                    <input type="url" id="videoLink" placeholder="https://www.chefkoch.de/...">
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Zubereitungsschritte *</label>
+                    <textarea id="instructions" required placeholder="Schritte..."></textarea>
+                </div>
+                <button type="submit">Rezept保存</button>
+            </form>
+        </div>
+    </aside>
+
+    <main class="recipes-display" id="recipesContainer">
+        <p style="text-align: center; color: #7f8c8d;" id="loadingStatus">Bitte richte zuerst den Zugriff ein.</p>
+    </main>
+</div>
+
+<script>
+    let GITHUB_TOKEN = localStorage.getItem("recipe_book_token") || "";
+    const USERNAME = "jannis276"; 
+    const REPO_NAME = "Rezeptbuch"; 
+    const FILE_NAME = "rezepte.json";
+
+    const API_URL = `https://api.github.com/repos/${USERNAME}/${REPO_NAME}/contents/${FILE_NAME}`;
+    let fileSha = null;
+    let recipes = [];
+
+    function checkTokenDisplay() {
+        if (GITHUB_TOKEN) {
+            document.getElementById("tokenBox").style.display = "none";
+            document.getElementById("loadingStatus").innerText = "Rezepte werden geladen...";
+            loadRecipes();
+        } else {
+            document.getElementById("tokenBox").style.display = "block";
+            document.getElementById("recipesContainer").innerHTML = '<p style="text-align: center; color: #7f8c8d;">Bitte gib links den Zugangsschlüssel ein.</p>';
+        }
+    }
+
+    function saveToken() {
+        const val = document.getElementById("tokenInput").value.trim();
+        if(val) {
+            GITHUB_TOKEN = val;
+            localStorage.setItem("recipe_book_token", val);
+            checkTokenDisplay();
+        }
+    }
+
+    async function loadRecipes() {
+        try {
+            const response = await fetch(API_URL, {
+                headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
+            });
+            
+            if (response.status === 401 || response.status === 403) {
+                alert("Der eingegebene Schlüssel ist nicht gültig. Bitte gib ihn erneut ein.");
+                localStorage.removeItem("recipe_book_token");
+                GITHUB_TOKEN = "";
+                checkTokenDisplay();
+                return;
+            }
+
+            if (response.status === 404) {
+                recipes = [];
+                displayRecipes(recipes);
+                return;
+            }
+
+            const data = await response.json();
+            fileSha = data.sha;
+            
+            const jsonString = decodeURIComponent(escape(atob(data.content)));
+            const parsedData = JSON.parse(jsonString);
+            recipes = parsedData.recipes || [];
+            displayRecipes(recipes);
+        } catch (error) {
+            console.error(error);
+            document.getElementById('recipesContainer').innerHTML = `<p style="color:red; text-align:center;">Verbindungsfehler zu GitHub.</p>`;
+        }
+    }
+
+    async function saveRecipes() {
+        try {
+            const jsonString = JSON.stringify({ recipes: recipes }, null, 2);
+            const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+            const bodyData = {
+                message: "Rezeptliste aktualisiert via Web-App",
+                content: base64Content
+            };
+            if (fileSha) bodyData.sha = fileSha;
+
+            const response = await fetch(API_URL, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${GITHUB_TOKEN}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bodyData)
+            });
+
+            if(response.ok) {
+                const data = await response.json();
+                fileSha = data.content.sha;
+                filterRecipes();
+                alert("Erfolg! Das Rezept wurde dauerhaft in deinem GitHub-Projekt gespeichert.");
+            } else {
+                alert("Fehler beim Speichern. Status: " + response.status);
+            }
+        } catch (error) {
+            alert("Verbindungsfehler!");
+        }
+    }
+
+    function smartParseText() {
+        const rawText = document.getElementById('smartPaste').value.trim();
+        if (!rawText) return;
+
+        let sanitizedText = rawText.replace(/[0-9]+\s*\([0-9]+\)/g, '');
+        const lines = sanitizedText.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+        
+        let ingredientsArr = [];
+        let instructionsArr = [];
+        let detectedTitle = "";
+        let detectedPortions = 4;
+        let detectedTime = "30 Min.";
+
+        const lowerText = sanitizedText.toLowerCase();
+        const spamWords = ["werbung", "einkaufen", "warenkorb", "einkaufszettel", "drucken", "teilen", "pinterest", "facebook", "instagram", "kommentar", "bewertung", "sterne", "anzahl", "registrieren", "anmelden", "abo", "newsletter", "app herunterladen", "bild", "foto", "video"];
+
+        const portionMatch = sanitizedText.match(/(?:für|portionen|personen)\s*:?\s*([0-9]+)/i);
+        if (portionMatch) detectedPortions = parseInt(portionMatch[1]);
+
+        const timeMatch = sanitizedText.match(/([0-9]+)\s*(?:min|minuten|std|stunden)/i);
+        if (timeMatch) detectedTime = timeMatch[0];
+
+        if (lowerText.includes('nudeln') || lowerText.includes('pasta') || lowerText.includes('spaghetti')) {
+            document.getElementById('category').value = 'Nudelgerichte';
+        } else if (lowerText.includes('reis') || lowerText.includes('risotto')) {
+            document.getElementById('category').value = 'Reisgerichte';
+        } else if (lowerText.includes('fleisch') || lowerText.includes('hackfleisch') || lowerText.includes('hähnchen')) {
+            document.getElementById('category').value = 'Fleischgerichte';
+        } else if (lowerText.includes('vegan') || lowerText.includes('vegetarisch')) {
+            document.getElementById('category').value = 'Vegetarisch/Vegan';
+        }
+
+        for (let i = 0; i < Math.min(lines.length, 15); i++) {
+            let line = lines[i];
+            if (line.length > 4 && line.length < 50) {
+                let isSpam = spamWords.some(word => line.toLowerCase().includes(word));
+                if (!isSpam && !/^[0-9.,\s]+$/.test(line) && !line.includes('g ') && !line.includes('ml ')) {
+                    detectedTitle = line;
+                    break;
+                }
+            }
+        }
+
+        const units = ["g", "kg", "ml", "l", "tl", "el", "bund", "dose", "dosen", "becher", "packung", "pkg", "zehe", "zehen", "stck", "stück", "prise"];
+
+        for (let i = 0; i < lines.length; i++) {
+            let currentLine = lines[i];
+            if (currentLine === detectedTitle || currentLine.length < 2) continue;
+            if (spamWords.some(word => currentLine.toLowerCase().includes(word))) continue;
+
+            const startsWithNumber = /^([0-9.,\/¼½¾]+)/.test(currentLine);
+            const containsUnit = units.some(u => new RegExp(`\\b${u}\\b`, 'i').test(currentLine.toLowerCase()));
+
+            if ((startsWithNumber || containsUnit) && currentLine.length < 45 && !/schneiden|geben|rühren|kochen/i.test(currentLine)) {
+                if (currentLine.length < 18 && i + 1 < lines.length) {
+                    let nextLine = lines[i + 1].trim();
+                    if (nextLine.length > 0 && !/^([0-9]+)/.test(nextLine)) {
+                        currentLine = currentLine + " " + nextLine;
+                        i++;
+                    }
+                }
+                ingredientsArr.push(currentLine);
+            } else if (currentLine.length > 15) {
+                let cleanSentence = currentLine.replace(/dann|anschließend|danach/gi, '').replace(/^\s*[0-9.\-)•*]+\s*/, '').trim();
+                if (cleanSentence.length > 10) {
+                    instructionsArr.push(`• ${cleanSentence.charAt(0).toUpperCase() + cleanSentence.slice(1)}`);
+                }
+            }
+        }
+
+        if (detectedTitle) document.getElementById('title').value = detectedTitle;
+        document.getElementById('basePortions').value = detectedPortions;
+        document.getElementById('time').value = detectedTime;
+        if (ingredientsArr.length > 0) document.getElementById('ingredients').value = ingredientsArr.join('\n');
+        if (instructionsArr.length > 0) document.getElementById('instructions').value = instructionsArr.join('\n');
+        
+        document.getElementById('smartPaste').value = '';
+    }
+
+    function parseIngredients(text) {
+        return text.split('\n').map(line => {
+            line = line.trim();
+            if (!line) return null;
+            const match = line.match(/^([0-9.,\/¼½¾]+)?\s*([a-zA-ZäöüÄÖÜß°]*)\s*(.*)$/);
+            if (match && match[1]) {
+                try {
+                    let amtStr = match[1].replace(',', '.').replace('¼', '0.25').replace('½', '0.5').replace('¾', '0.75');
+                    return { amount: eval(amtStr), unit: match[2], name: match[3] };
+                } catch(e) { return { amount: null, unit: '', name: line }; }
+            }
+            return { amount: null, unit: '', name: line };
+        }).filter(item => item !== null);
+    }
+
+    function addRecipe(event) {
+        event.preventDefault();
+        const newRecipe = {
+            id: Date.now(),
+            title: document.getElementById('title').value,
+            category: document.getElementById('category').value,
+            basePortions: parseInt(document.getElementById('basePortions').value),
+            time: document.getElementById('time').value,
+            videoLink: document.getElementById('videoLink').value,
+            ingredients: parseIngredients(document.getElementById('ingredients').value),
+            instructions: document.getElementById('instructions').value
+        };
+        recipes.push(newRecipe);
+        saveRecipes();
+        document.getElementById('recipeForm').reset();
+    }
+
+    function displayRecipes(recipesToRender) {
+        const container = document.getElementById('recipesContainer');
+        container.innerHTML = '';
+
+        if(recipesToRender.length === 0) {
+            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #7f8c8d;">Noch keine Rezepte vorhanden. Trag das erste ein!</p>';
+            return;
+        }
+
+        recipesToRender.forEach(recipe => {
+            const card = document.createElement('div');
+            card.className = 'recipe-card';
+            let vBtn = recipe.videoLink ? `<a href="${recipe.videoLink}" target="_blank" class="video-link-btn">🔗 Link / Video</a>` : '';
+            card.innerHTML = `
+                <span class="recipe-category">${recipe.category}</span>
+                <h3>${recipe.title}</h3>
+                <div class="recipe-time">⏱️ Zeit: ${recipe.time}</div>
+                <div class="portion-calculator">
+                    <label>Für </label>
+                    <input type="number" min="1" value="${recipe.basePortions}" oninput="recalculateIngredients(this, ${recipe.id}, ${recipe.basePortions})">
+                    <label> Personen</label>
+                </div>
+                <h4>Zutaten:</h4>
+                <ul class="ingredients-list" id="ing-list-${recipe.id}">${renderIngredients(recipe.ingredients, 1)}</ul>
+                <h4>Zubereitung:</h4>
+                <p class="instructions">${recipe.instructions}</p>
+                <div class="action-buttons">${vBtn}<button class="delete-btn" onclick="deleteRecipe(${recipe.id})">Löschen</button></div>
+            `;
+            container.appendChild(card);
+        });
+    }
+
+    function renderIngredients(ingredients, factor) {
+        return ingredients.map(ing => {
+            if (ing.amount !== null) {
+                let calc = (ing.amount * factor).toFixed(2).replace(/\.?0+$/, '');
+                return `<li><strong>${calc} ${ing.unit}</strong> ${ing.name}</li>`;
+            }
+            return `<li>${ing.name}</li>`;
+        }).join('');
+    }
+
+    function recalculateIngredients(inputField, recipeId, basePortions) {
+        const currentPortions = parseFloat(inputField.value);
+        if (!currentPortions || currentPortions < 1) return;
+        const factor = currentPortions / basePortions;
+        const recipe = recipes.find(r => r.id === recipeId);
+        if (recipe) document.getElementById(`ing-list-${recipeId}`).innerHTML = renderIngredients(recipe.ingredients, factor);
+    }
+
+    function deleteRecipe(id) {
+        if(confirm("Rezept vergessen?")) { recipes = recipes.filter(r => r.id !== id); saveRecipes(); }
+    }
+
+    function filterRecipes() {
+        const query = document.getElementById('searchBar').value.toLowerCase();
+        const cat = document.getElementById('filterCategory').value;
+        const filtered = recipes.filter(r => r.title.toLowerCase().includes(query) && (cat === "Alle" || r.category === cat));
+        displayRecipes(filtered);
+    }
+
+    checkTokenDisplay();
+</script>
+</body>
+</html>
