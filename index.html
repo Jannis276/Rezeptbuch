@@ -29,18 +29,19 @@
 
         header {
             text-align: center;
-            margin-bottom: 30px;
-            padding: 30px;
+            margin-bottom: 25px;
+            padding: 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
+        header h1 { font-size: 24px; }
         header p {
             margin-top: 5px;
             opacity: 0.9;
-            font-size: 15px;
+            font-size: 14px;
         }
 
         .container {
@@ -48,22 +49,22 @@
             margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr;
-            gap: 30px;
+            gap: 20px;
         }
 
         @media (min-width: 768px) {
             .container {
-                grid-template-columns: 360px 1fr;
+                grid-template-columns: 340px 1fr;
             }
         }
 
         .form-section, .filter-section, .token-section, .season-section {
             background: var(--card-bg);
-            padding: 25px;
-            border-radius: 16px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
             height: fit-content;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             position: relative;
         }
 
@@ -78,40 +79,38 @@
         }
 
         h2 {
-            margin-bottom: 18px;
+            margin-bottom: 15px;
             color: var(--secondary-color);
-            font-size: 19px;
+            font-size: 17px;
             border-bottom: 2px solid #eef2f3;
-            padding-bottom: 8px;
+            padding-bottom: 6px;
         }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             position: relative;
         }
 
         label {
             display: block;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
             font-weight: 600;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         input, select {
             width: 100%;
-            padding: 12px;
+            padding: 10px;
             border: 1px solid #dcdde1;
-            border-radius: 8px;
-            font-size: 14px;
+            border-radius: 6px;
+            font-size: 13px;
             background-color: #fcfcfc;
-            transition: all 0.2s;
         }
 
         input:focus, select:focus {
             outline: none;
             border-color: var(--accent-color);
             background-color: #fff;
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
         }
 
         .suggestions-box {
@@ -122,18 +121,18 @@
             background: white;
             border: 1px solid #dcdde1;
             border-top: none;
-            border-radius: 0 0 8px 8px;
-            max-height: 200px;
+            border-radius: 0 0 6px 6px;
+            max-height: 180px;
             overflow-y: auto;
             z-index: 1000;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.08);
             display: none;
         }
 
         .suggestion-item {
-            padding: 12px;
+            padding: 10px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             border-bottom: 1px solid #f8f9fa;
         }
 
@@ -147,12 +146,11 @@
             background-color: var(--primary-color);
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 15px;
-            cursor: pointer;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
             font-weight: bold;
-            transition: background 0.2s;
+            cursor: pointer;
         }
 
         button:hover { background-color: #1e7e34; }
@@ -160,7 +158,7 @@
         .recipes-display {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
+            gap: 12px;
         }
 
         @media (min-width: 992px) {
@@ -169,44 +167,41 @@
             }
         }
 
+        /* Kompakte Rezeptkarten */
         .recipe-card {
             background: var(--card-bg);
-            border-radius: 16px;
-            padding: 22px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-            border-left: 6px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border-left: 5px solid var(--primary-color);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .recipe-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            gap: 8px;
         }
 
         .recipe-header-info {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 10px;
+            align-items: center;
+            gap: 10px;
         }
 
         .recipe-category {
             background: #edf2f7;
             color: #4a5568;
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 10px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
         .rating-display {
             color: #ccc;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
+            user-select: none;
         }
 
         .rating-display .active-star {
@@ -214,16 +209,18 @@
         }
 
         .recipe-card h3 {
-            font-size: 18px;
+            font-size: 16px;
             color: var(--secondary-color);
-            margin-bottom: 20px;
-            line-height: 1.4;
+            font-weight: 600;
+            margin: 2px 0;
+            line-height: 1.3;
         }
 
         .card-actions {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             align-items: center;
+            margin-top: 4px;
         }
 
         .link-btn {
@@ -233,9 +230,9 @@
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            padding: 10px;
+            padding: 8px;
             border-radius: 6px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
         }
 
@@ -243,8 +240,8 @@
 
         .delete-btn {
             background-color: #ff7675;
-            padding: 10px 14px;
-            font-size: 13px;
+            padding: 8px 12px;
+            font-size: 12px;
             width: auto;
             border-radius: 6px;
             color: white;
@@ -255,11 +252,11 @@
 
         .season-list {
             list-style: none;
-            font-size: 14px;
+            font-size: 13px;
         }
 
         .season-list li {
-            padding: 6px 0;
+            padding: 5px 0;
             border-bottom: 1px dashed #d1f2eb;
         }
 
@@ -280,25 +277,20 @@
 
 <div class="container">
     <aside>
-        <!-- Token Box -->
         <div class="token-section" id="tokenBox">
             <h2 style="color: #e67e22; border-bottom-color: #fcede2;">🔑 Zugriff einrichten</h2>
-            <p style="font-size: 13px; margin-bottom: 12px; color: #7f8c8d;">Füge dein GitHub-Token ein, um die gemeinsame Liste zu laden.</p>
+            <p style="font-size: 12px; margin-bottom: 10px; color: #7f8c8d;">Füge dein GitHub-Token ein, um die gemeinsame Liste zu laden.</p>
             <div class="form-group">
                 <input type="password" id="tokenInput" placeholder="ghp_...">
             </div>
-            <button type="button" style="background-color: #e67e22;" onclick="saveToken()">Verbinden</button>
+            <button type="button" style="background-color: #e67e22; padding: 8px;" onclick="saveToken()">Verbinden</button>
         </div>
 
-        <!-- Saison-Empfehlungen -->
         <div class="season-section" id="seasonBox" style="display:none;">
             <h2 style="color: #16a085; border-bottom-color: #d1f2eb;" id="seasonTitle">🌱 Saisonal im Monat</h2>
-            <ul class="season-list" id="seasonList">
-                <!-- Wird automatisch befüllt -->
-            </ul>
+            <ul class="season-list" id="seasonList"></ul>
         </div>
 
-        <!-- Suche & Filter -->
         <div class="filter-section">
             <h2>Suche & Filter</h2>
             <div class="form-group">
@@ -329,7 +321,6 @@
             </div>
         </div>
 
-        <!-- Formular -->
         <div class="form-section">
             <h2>Link hinzufügen</h2>
             <form id="recipeForm" onsubmit="addRecipe(event)">
@@ -352,7 +343,7 @@
                     <label for="recipeLink">Rezept-Link *</label>
                     <input type="url" id="recipeLink" required placeholder="https://www.chefkoch.de/...">
                 </div>
-                <button type="submit">Link speichern</button>
+                <button type="submit" style="padding: 10px;">Link speichern</button>
             </form>
         </div>
     </aside>
@@ -399,233 +390,4 @@
                 headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
             });
             
-            if (response.status === 401 || response.status === 403) {
-                alert("Der eingegebene Schlüssel ist nicht gültig.");
-                localStorage.removeItem("recipe_book_token");
-                GITHUB_TOKEN = "";
-                checkTokenDisplay();
-                return;
-            }
-
-            if (response.status === 404) {
-                recipes = [];
-                displayRecipes(recipes);
-                updateSeasonalSuggestions();
-                return;
-            }
-
-            const data = await response.json();
-            fileSha = data.sha;
-            
-            const jsonString = decodeURIComponent(escape(atob(data.content)));
-            const parsedData = JSON.parse(jsonString);
-            recipes = parsedData.recipes || [];
-            displayRecipes(recipes);
-            updateSeasonalSuggestions();
-        } catch (error) {
-            console.error(error);
-            document.getElementById('recipesContainer').innerHTML = `<p style="color:red; text-align:center;">Verbindungsfehler zu GitHub.</p>`;
-        }
-    }
-
-    async function saveRecipes() {
-        try {
-            const jsonString = JSON.stringify({ recipes: recipes }, null, 2);
-            const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
-
-            const bodyData = {
-                message: "Rezept-Links aktualisiert via Web-App",
-                content: base64Content
-            };
-            if (fileSha) bodyData.sha = fileSha;
-
-            const response = await fetch(API_URL, {
-                method: 'PUT',
-                headers: {
-                    'Authorization': `token ${GITHUB_TOKEN}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(bodyData)
-            });
-
-            if(response.ok) {
-                const data = await response.json();
-                fileSha = data.content.sha;
-                filterRecipes();
-                updateSeasonalSuggestions();
-            } else {
-                alert("Fehler beim Speichern. Status: " + response.status);
-            }
-        } catch (error) {
-            alert("Verbindungsfehler!");
-        }
-    }
-
-    function addRecipe(event) {
-        event.preventDefault();
-        const newRecipe = {
-            id: Date.now(),
-            title: document.getElementById('title').value.trim(),
-            category: document.getElementById('category').value,
-            recipeLink: document.getElementById('recipeLink').value.trim(),
-            rating: 0 // Standardmäßig noch unbewertet
-        };
-        recipes.push(newRecipe);
-        saveRecipes();
-        document.getElementById('recipeForm').reset();
-    }
-
-    function displayRecipes(recipesToRender) {
-        const container = document.getElementById('recipesContainer');
-        container.innerHTML = '';
-
-        if(recipesToRender.length === 0) {
-            container.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #7f8c8d; padding: 20px;">Keine Links gefunden, die auf den Filter passen.</p>';
-            return;
-        }
-
-        recipesToRender.forEach(recipe => {
-            const card = document.createElement('div');
-            card.className = 'recipe-card';
-            
-            // Sterne-HTML generieren
-            let starsHtml = '';
-            const currentRating = recipe.rating || 0;
-            for (let i = 1; i <= 5; i++) {
-                starsHtml += `<span class="${i <= currentRating ? 'active-star' : ''}" onclick="rateRecipe(${recipe.id}, ${i})">★</span>`;
-            }
-
-            card.innerHTML = `
-                <div>
-                    <div class="recipe-header-info">
-                        <span class="recipe-category">${recipe.category}</span>
-                        <div class="rating-display">${starsHtml}</div>
-                    </div>
-                    <h3>${recipe.title}</h3>
-                </div>
-                <div class="card-actions">
-                    <a href="${recipe.recipeLink}" target="_blank" class="link-btn">🍽️ Zum Rezept</a>
-                    <button class="delete-btn" onclick="deleteRecipe(${recipe.id})">❌</button>
-                </div>
-            `;
-            container.appendChild(card);
-        });
-    }
-
-    // Funktion zum Vergeben von Sternen
-    function rateRecipe(id, stars) {
-        const recipe = recipes.find(r => r.id === id);
-        if (recipe) {
-            // Wenn man auf die aktuelle Note klickt, setzt es sich zurück, ansonsten setzt es die neue Note
-            recipe.rating = (recipe.rating === stars) ? 0 : stars;
-            saveRecipes();
-        }
-    }
-
-    // Automatische Saison-Vorschlags-Erkennung basierend auf eurer Rezept-Sammlung
-    function updateSeasonalSuggestions() {
-        const month = new Date().getMonth(); // 0 = Jan, 5 = Jun, 11 = Dez
-        const monthsNames = ["Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"];
-        
-        const seasonBox = document.getElementById("seasonBox");
-        const seasonTitle = document.getElementById("seasonTitle");
-        const seasonList = document.getElementById("seasonList");
-
-        let seasonIcons = ["❄️", "❄️", "🌱", "🌱", "🌱", "☀️", "☀️", "☀️", "🍂", "🍂", "🍂", "❄️"];
-        seasonTitle.innerText = `${seasonIcons[month]} Passend für ${monthsNames[month]}`;
-        seasonList.innerHTML = "";
-
-        let matchingRecipes = [];
-
-        // Definition der Saison-Kategorien je nach Jahreszeit
-        if (month >= 5 && month <= 7) { // Sommer (Juni, Juli, August)
-            matchingRecipes = recipes.filter(r => r.category === "Vegetarisch/Vegan" || r.category === "Desserts" || r.title.toLowerCase().includes("salat") || r.title.toLowerCase().includes("nudeln"));
-        } else if (month >= 8 && month <= 10) { // Herbst (Sept, Okt, Nov)
-            matchingRecipes = recipes.filter(r => r.category === "Fleischgerichte" || r.category === "Reisgerichte" || r.title.toLowerCase().includes("suppe") || r.title.toLowerCase().includes("auflauf"));
-        } else if (month === 11 || month === 0 || month === 1) { // Winter (Dez, Jan, Feb)
-            matchingRecipes = recipes.filter(r => r.category === "Fleischgerichte" || r.title.toLowerCase().includes("gulasch") || r.title.toLowerCase().includes("braten") || r.title.toLowerCase().includes("ofen"));
-        } else { // Frühling (März, April, Mai)
-            matchingRecipes = recipes.filter(r => r.category === "Vegetarisch/Vegan" || r.category === "Nudelgerichte" || r.title.toLowerCase().includes("gemüse"));
-        }
-
-        if (matchingRecipes.length > 0) {
-            // Maximal 3 Vorschläge ausgeben, um die Box schlank zu halten
-            matchingRecipes.slice(0, 3).forEach(recipe => {
-                const li = document.createElement("li");
-                li.innerHTML = `⭐ <a href="#" onclick="selectSuggestion('${recipe.title.replace(/'/g, "\\'")}')">${recipe.title}</a>`;
-                seasonList.appendChild(li);
-            });
-            seasonBox.style.display = "block";
-        } else {
-            seasonBox.style.display = "none";
-        }
-    }
-
-    function selectSuggestion(title) {
-        document.getElementById('searchBar').value = title;
-        filterRecipes();
-    }
-
-    function handleSearchInput() {
-        const query = document.getElementById('searchBar').value.toLowerCase().trim();
-        const sugBox = document.getElementById('suggestionsBox');
-        
-        filterRecipes();
-
-        if (query.length < 1) {
-            sugBox.style.display = "none";
-            return;
-        }
-
-        const matchedRecipes = recipes.filter(r => r.title.toLowerCase().includes(query));
-
-        if (matchedRecipes.length > 0) {
-            sugBox.innerHTML = '';
-            matchedRecipes.slice(0, 5).forEach(recipe => {
-                const div = document.createElement('div');
-                div.className = 'suggestion-item';
-                div.innerText = recipe.title;
-                div.onclick = () => {
-                    document.getElementById('searchBar').value = recipe.title;
-                    sugBox.style.display = "none";
-                    filterRecipes();
-                };
-                sugBox.appendChild(div);
-            });
-            sugBox.style.display = "block";
-        } else {
-            sugBox.style.display = "none";
-        }
-    }
-
-    document.addEventListener('click', function(e) {
-        if (e.target.id !== 'searchBar') {
-            document.getElementById('suggestionsBox').style.display = "none";
-        }
-    });
-
-    function filterRecipes() {
-        const query = document.getElementById('searchBar').value.toLowerCase().trim();
-        const cat = document.getElementById('filterCategory').value;
-        const minRating = parseInt(document.getElementById('filterRating').value);
-        
-        const filtered = recipes.filter(r => {
-            const matchesSearch = r.title.toLowerCase().includes(query);
-            const matchesCategory = (cat === "Alle" || r.category === cat);
-            const matchesRating = (minRating === 0 || (r.rating || 0) >= minRating);
-            return matchesSearch && matchesCategory && matchesRating;
-        });
-        displayRecipes(filtered);
-    }
-
-    function deleteRecipe(id) {
-        if(confirm("Link wirklich löschen?")) { 
-            recipes = recipes.filter(r => r.id !== id); 
-            saveRecipes(); 
-        }
-    }
-
-    checkTokenDisplay();
-</script>
-</body>
-</html>
+            if (response.status === 401 || response.status === 403
