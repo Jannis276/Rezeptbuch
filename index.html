@@ -30,19 +30,15 @@
         header {
             text-align: center;
             margin-bottom: 25px;
-            padding: 20px;
+            padding: 15px;
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
             color: white;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.06);
         }
 
-        header h1 { font-size: 24px; }
-        header p {
-            margin-top: 5px;
-            opacity: 0.9;
-            font-size: 14px;
-        }
+        header h1 { font-size: 22px; }
+        header p { margin-top: 3px; opacity: 0.9; font-size: 13px; }
 
         .container {
             max-width: 1100px;
@@ -68,15 +64,8 @@
             position: relative;
         }
 
-        .token-section {
-            background: #fdf2e9;
-            border: 1px solid #e67e22;
-        }
-
-        .season-section {
-            background: #e8f8f5;
-            border-left: 5px solid #16a085;
-        }
+        .token-section { background: #fdf2e9; border: 1px solid #e67e22; }
+        .season-section { background: #e8f8f5; border-left: 5px solid #16a085; }
 
         h2 {
             margin-bottom: 15px;
@@ -107,11 +96,7 @@
             background-color: #fcfcfc;
         }
 
-        input:focus, select:focus {
-            outline: none;
-            border-color: var(--accent-color);
-            background-color: #fff;
-        }
+        input:focus, select:focus { outline: none; border-color: var(--accent-color); }
 
         .suggestions-box {
             position: absolute;
@@ -129,17 +114,8 @@
             display: none;
         }
 
-        .suggestion-item {
-            padding: 10px;
-            cursor: pointer;
-            font-size: 13px;
-            border-bottom: 1px solid #f8f9fa;
-        }
-
-        .suggestion-item:hover {
-            background-color: #edf2f7;
-            color: var(--accent-color);
-        }
+        .suggestion-item { padding: 10px; cursor: pointer; font-size: 13px; border-bottom: 1px solid #f8f9fa; }
+        .suggestion-item:hover { background-color: #edf2f7; color: var(--accent-color); }
 
         button {
             width: 100%;
@@ -152,13 +128,12 @@
             font-weight: bold;
             cursor: pointer;
         }
-
         button:hover { background-color: #1e7e34; }
 
         .recipes-display {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 12px;
+            gap: 10px;
         }
 
         @media (min-width: 992px) {
@@ -167,60 +142,56 @@
             }
         }
 
-        /* Kompakte Rezeptkarten */
+        /* Ultra-Kompakte Rezeptkarten */
         .recipe-card {
             background: var(--card-bg);
-            border-radius: 12px;
-            padding: 14px 18px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border-radius: 10px;
+            padding: 12px 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
             border-left: 5px solid var(--primary-color);
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
         }
 
         .recipe-header-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 10px;
         }
 
         .recipe-category {
             background: #edf2f7;
             color: #4a5568;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 9px;
             font-weight: bold;
             text-transform: uppercase;
         }
 
         .rating-display {
             color: #ccc;
-            font-size: 16px;
+            font-size: 15px;
             cursor: pointer;
             user-select: none;
         }
 
-        .rating-display .active-star {
-            color: var(--star-color);
-        }
+        .rating-display .active-star { color: var(--star-color); }
 
         .recipe-card h3 {
-            font-size: 16px;
+            font-size: 15px;
             color: var(--secondary-color);
             font-weight: 600;
+            line-height: 1.2;
             margin: 2px 0;
-            line-height: 1.3;
         }
 
         .card-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
             align-items: center;
-            margin-top: 4px;
+            width: 100%;
         }
 
         .link-btn {
@@ -230,41 +201,28 @@
             background-color: var(--accent-color);
             color: white;
             text-decoration: none;
-            padding: 8px;
-            border-radius: 6px;
-            font-size: 13px;
+            padding: 6px;
+            border-radius: 5px;
+            font-size: 12px;
             font-weight: bold;
         }
-
         .link-btn:hover { background-color: #2980b9; }
 
         .delete-btn {
             background-color: #ff7675;
-            padding: 8px 12px;
-            font-size: 12px;
+            padding: 6px 10px;
+            font-size: 11px;
             width: auto;
-            border-radius: 6px;
+            border-radius: 5px;
             color: white;
             border: none;
             cursor: pointer;
         }
         .delete-btn:hover { background-color: #d63031; }
 
-        .season-list {
-            list-style: none;
-            font-size: 13px;
-        }
-
-        .season-list li {
-            padding: 5px 0;
-            border-bottom: 1px dashed #d1f2eb;
-        }
-
-        .season-list li a {
-            color: #16a085;
-            text-decoration: none;
-            font-weight: 600;
-        }
+        .season-list { list-style: none; font-size: 13px; }
+        .season-list li { padding: 5px 0; border-bottom: 1px dashed #d1f2eb; }
+        .season-list li a { color: #16a085; text-decoration: none; font-weight: 600; }
         .season-list li a:hover { text-decoration: underline; }
     </style>
 </head>
@@ -272,122 +230,3 @@
 
 <header>
     <h1>Unsere Rezept-Links</h1>
-    <p>Lieblingsrezepte sammeln, bewerten und blitzschnell wiederfinden</p>
-</header>
-
-<div class="container">
-    <aside>
-        <div class="token-section" id="tokenBox">
-            <h2 style="color: #e67e22; border-bottom-color: #fcede2;">🔑 Zugriff einrichten</h2>
-            <p style="font-size: 12px; margin-bottom: 10px; color: #7f8c8d;">Füge dein GitHub-Token ein, um die gemeinsame Liste zu laden.</p>
-            <div class="form-group">
-                <input type="password" id="tokenInput" placeholder="ghp_...">
-            </div>
-            <button type="button" style="background-color: #e67e22; padding: 8px;" onclick="saveToken()">Verbinden</button>
-        </div>
-
-        <div class="season-section" id="seasonBox" style="display:none;">
-            <h2 style="color: #16a085; border-bottom-color: #d1f2eb;" id="seasonTitle">🌱 Saisonal im Monat</h2>
-            <ul class="season-list" id="seasonList"></ul>
-        </div>
-
-        <div class="filter-section">
-            <h2>Suche & Filter</h2>
-            <div class="form-group">
-                <label for="searchBar">Rezept suchen:</label>
-                <input type="text" id="searchBar" placeholder="Tippe z.B. Maultaschen..." oninput="handleSearchInput()" autocomplete="off">
-                <div class="suggestions-box" id="suggestionsBox"></div>
-            </div>
-            <div class="form-group">
-                <label for="filterCategory">Kategorie:</label>
-                <select id="filterCategory" onchange="filterRecipes()">
-                    <option value="Alle">Alle Kategorien</option>
-                    <option value="Nudelgerichte">Nudelgerichte</option>
-                    <option value="Reisgerichte">Reisgerichte</option>
-                    <option value="Fleischgerichte">Fleischgerichte</option>
-                    <option value="Vegetarisch/Vegan">Vegetarisch/Vegan</option>
-                    <option value="Desserts">Desserts</option>
-                    <option value="Sonstiges">Sonstiges</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="filterRating">Mindest-Bewertung:</label>
-                <select id="filterRating" onchange="filterRecipes()">
-                    <option value="0">Alle Bewertungen</option>
-                    <option value="5">⭐⭐⭐⭐⭐ (Top!)</option>
-                    <option value="4">⭐⭐⭐⭐ & mehr</option>
-                    <option value="3">⭐⭐⭐ & mehr</option>
-                </select>
-            </div>
-        </div>
-
-        <div class="form-section">
-            <h2>Link hinzufügen</h2>
-            <form id="recipeForm" onsubmit="addRecipe(event)">
-                <div class="form-group">
-                    <label for="title">Name des Gerichts *</label>
-                    <input type="text" id="title" required placeholder="z.B. Maultaschen-Gulasch">
-                </div>
-                <div class="form-group">
-                    <label for="category">Kategorie *</label>
-                    <select id="category" required>
-                        <option value="Nudelgerichte">Nudelgerichte</option>
-                        <option value="Reisgerichte">Reisgerichte</option>
-                        <option value="Fleischgerichte">Fleischgerichte</option>
-                        <option value="Vegetarisch/Vegan">Vegetarisch/Vegan</option>
-                        <option value="Desserts">Desserts</option>
-                        <option value="Sonstiges">Sonstiges</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="recipeLink">Rezept-Link *</label>
-                    <input type="url" id="recipeLink" required placeholder="https://www.chefkoch.de/...">
-                </div>
-                <button type="submit" style="padding: 10px;">Link speichern</button>
-            </form>
-        </div>
-    </aside>
-
-    <main class="recipes-display" id="recipesContainer">
-        <p style="text-align: center; color: #7f8c8d;" id="loadingStatus">Bitte richte zuerst den Zugriff ein.</p>
-    </main>
-</div>
-
-<script>
-    let GITHUB_TOKEN = localStorage.getItem("recipe_book_token") || "";
-    const USERNAME = "jannis276"; 
-    const REPO_NAME = "Rezeptbuch"; 
-    const FILE_NAME = "rezepte_links.json";
-
-    const API_URL = `https://api.github.com/repos/${USERNAME}/${REPO_NAME}/contents/${FILE_NAME}`;
-    let fileSha = null;
-    let recipes = [];
-
-    function checkTokenDisplay() {
-        if (GITHUB_TOKEN) {
-            document.getElementById("tokenBox").style.display = "none";
-            document.getElementById("loadingStatus").innerText = "Links werden geladen...";
-            loadRecipes();
-        } else {
-            document.getElementById("tokenBox").style.display = "block";
-            document.getElementById("seasonBox").style.display = "none";
-            document.getElementById("recipesContainer").innerHTML = '<p style="text-align: center; color: #7f8c8d;">Bitte gib links den Zugangsschlüssel ein.</p>';
-        }
-    }
-
-    function saveToken() {
-        const val = document.getElementById("tokenInput").value.trim();
-        if(val) {
-            GITHUB_TOKEN = val;
-            localStorage.setItem("recipe_book_token", val);
-            checkTokenDisplay();
-        }
-    }
-
-    async function loadRecipes() {
-        try {
-            const response = await fetch(API_URL, {
-                headers: { 'Authorization': `token ${GITHUB_TOKEN}` }
-            });
-            
-            if (response.status === 401 || response.status === 403
